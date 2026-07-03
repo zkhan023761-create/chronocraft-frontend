@@ -38,17 +38,29 @@ function ShopContent() {
   const searchParams = useSearchParams();
 
   // Parse filters from URL
-  const getInitialFilters = () => ({
-    brands: searchParams.get('brands') ? searchParams.get('brands').split(',') : [],
-    genders: searchParams.get('genders') ? searchParams.get('genders').split(',') : [],
-    minPrice: searchParams.get('minPrice') || '',
-    maxPrice: searchParams.get('maxPrice') || '',
-    condition: searchParams.get('condition') || '',
-    sort: searchParams.get('sort') || 'newest',
-  });
+  const getInitialFilters = () => {
+    if (!searchParams) {
+      return {
+        brands: [],
+        genders: [],
+        minPrice: '',
+        maxPrice: '',
+        condition: '',
+        sort: 'newest',
+      };
+    }
+    return {
+      brands: searchParams.get('brands') ? searchParams.get('brands').split(',') : [],
+      genders: searchParams.get('genders') ? searchParams.get('genders').split(',') : [],
+      minPrice: searchParams.get('minPrice') || '',
+      maxPrice: searchParams.get('maxPrice') || '',
+      condition: searchParams.get('condition') || '',
+      sort: searchParams.get('sort') || 'newest',
+    };
+  };
 
   const [filters, setFilters] = useState(getInitialFilters);
-  const [search, setSearch] = useState(searchParams.get('q') || '');
+  const [search, setSearch] = useState(() => searchParams ? (searchParams.get('q') || '') : '');
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
