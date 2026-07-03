@@ -733,7 +733,7 @@ export default function AdminDashboardPage() {
                     <p className="text-white/30 text-center py-10 font-body">No watch listings found.</p>
                   ) : (
                     <div className="overflow-x-auto">
-                      <table className="w-full text-left text-sm font-body">
+                      <table className="w-full min-w-[800px] text-left text-sm font-body">
                         <thead>
                           <tr className="text-white/30 border-b border-white/5">
                             <th className="pb-3">Watch</th>
@@ -1018,7 +1018,7 @@ export default function AdminDashboardPage() {
                     <p className="text-white/30 text-center py-10 font-body">No registered users yet.</p>
                   ) : (
                     <div className="overflow-x-auto">
-                      <table className="w-full text-left text-sm font-body">
+                      <table className="w-full min-w-[800px] text-left text-sm font-body">
                         <thead>
                           <tr className="text-white/30 border-b border-white/5">
                             <th className="pb-3">Customer</th>
@@ -1052,7 +1052,7 @@ export default function AdminDashboardPage() {
                     <p className="text-white/30 text-center py-10 font-body">No reviews yet. Add your first review.</p>
                   ) : (
                     <div className="overflow-x-auto">
-                      <table className="w-full text-left text-sm font-body">
+                      <table className="w-full min-w-[800px] text-left text-sm font-body">
                         <thead>
                           <tr className="text-white/30 border-b border-white/5">
                             <th className="pb-3">Reviewer</th>
