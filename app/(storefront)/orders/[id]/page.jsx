@@ -211,7 +211,11 @@ export default function OrderTrackingPage() {
                       </div>
                       <div className="flex justify-between text-white/60 font-body text-sm">
                         <span>Delivery</span>
-                        <span>₹100</span>
+                        <span>
+                          {order.total - order.subtotal + (order.discount || 0) > 0
+                            ? `₹${(order.total - order.subtotal + (order.discount || 0)).toLocaleString('en-IN')}`
+                            : 'Free'}
+                        </span>
                       </div>
                       {order.discount > 0 && (
                         <div className="flex justify-between text-emerald-400 font-body text-sm">

@@ -985,7 +985,11 @@ export default function AdminDashboardPage() {
                                 </div>
                                 <div className="flex justify-between items-center text-white/50 text-xs font-body">
                                   <span>Delivery</span>
-                                  <span>₹100</span>
+                                  <span>
+                                    {o.total - o.subtotal + (o.discount || 0) > 0
+                                      ? `₹${(o.total - o.subtotal + (o.discount || 0)).toLocaleString('en-IN')}`
+                                      : 'Free'}
+                                  </span>
                                 </div>
                                 {o.discount > 0 && (
                                   <div className="flex justify-between items-center text-emerald-400 text-xs font-body">
