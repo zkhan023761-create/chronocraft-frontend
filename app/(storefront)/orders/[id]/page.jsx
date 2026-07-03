@@ -209,6 +209,10 @@ export default function OrderTrackingPage() {
                         <span>Subtotal</span>
                         <span>₹{order.subtotal.toLocaleString('en-IN')}</span>
                       </div>
+                      <div className="flex justify-between text-white/60 font-body text-sm">
+                        <span>Delivery</span>
+                        <span>₹100</span>
+                      </div>
                       {order.discount > 0 && (
                         <div className="flex justify-between text-emerald-400 font-body text-sm">
                           <span>Discount {order.couponCode && `(${order.couponCode})`}</span>

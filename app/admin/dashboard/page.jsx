@@ -968,19 +968,27 @@ export default function AdminDashboardPage() {
                                   </p>
                                 </div>
                               )}
-                              <div className="border-t border-white/5 pt-3">
-                                <div className="flex justify-between items-center">
+                              <div className="border-t border-white/5 pt-3 space-y-1">
+                                <div className="flex justify-between items-center text-white/50 text-xs font-body">
+                                  <span>Subtotal</span>
+                                  <span>₹{o.subtotal.toLocaleString('en-IN')}</span>
+                                </div>
+                                <div className="flex justify-between items-center text-white/50 text-xs font-body">
+                                  <span>Delivery</span>
+                                  <span>₹100</span>
+                                </div>
+                                {o.discount > 0 && (
+                                  <div className="flex justify-between items-center text-emerald-400 text-xs font-body">
+                                    <span>Discount</span>
+                                    <span>-₹{o.discount.toLocaleString('en-IN')}</span>
+                                  </div>
+                                )}
+                                <div className="flex justify-between items-center pt-1.5 border-t border-white/5">
                                   <span className="text-white/40 text-xs font-body uppercase tracking-wider">Order Total</span>
                                   <span className="text-[#C9A84C] font-display font-bold text-base">₹{o.total.toLocaleString('en-IN')}</span>
                                 </div>
-                                {o.discount > 0 && (
-                                  <div className="flex justify-between items-center mt-1">
-                                    <span className="text-white/30 text-xs font-body">Discount</span>
-                                    <span className="text-emerald-400 text-xs font-body">-₹{o.discount.toLocaleString('en-IN')}</span>
-                                  </div>
-                                )}
                                 {o.paymentProvider && (
-                                  <p className="text-white/30 text-xs font-body mt-1 capitalize">via {o.paymentProvider}</p>
+                                  <p className="text-white/30 text-xs font-body pt-1 capitalize">via {o.paymentProvider}</p>
                                 )}
                               </div>
                             </div>

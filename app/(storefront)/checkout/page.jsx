@@ -63,7 +63,7 @@ export default function CheckoutPage() {
       items,
       subtotal,
       discount: 0,
-      total: subtotal,
+      total: subtotal + 100,
       shippingAddress: {
         name,
         street,
@@ -99,7 +99,7 @@ export default function CheckoutPage() {
       const waText = encodeURIComponent(`Hello! I would like to finalize my purchase from Chrono Craft:
 
 📦 *Order Number:* ${data.order.orderNumber}
-💰 *Total Value:* ₹${subtotal.toLocaleString('en-IN')}
+💰 *Total Value:* ₹${(subtotal + 100).toLocaleString('en-IN')} (includes ₹100 delivery)
 
 🛒 *Items:*
 ${itemsList}
@@ -304,11 +304,11 @@ Please guide me with the payment options. Thank you!`);
                   </div>
                   <div className="flex justify-between">
                     <span>Delivery</span>
-                    <span className="text-emerald-400 font-semibold uppercase text-xs">Complimentary</span>
+                    <span className="text-white font-medium">₹100</span>
                   </div>
                   <div className="border-t border-white/10 pt-3 flex justify-between font-display text-white text-lg font-bold">
                     <span>Total</span>
-                    <span className="text-[#C9A84C]">₹{subtotal.toLocaleString('en-IN')}</span>
+                    <span className="text-[#C9A84C]">₹{(subtotal + 100).toLocaleString('en-IN')}</span>
                   </div>
                 </div>
               </div>

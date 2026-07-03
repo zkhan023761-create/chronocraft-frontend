@@ -63,7 +63,7 @@ export default function WhatsAppCTA({ product }) {
       ],
       subtotal: product.price,
       discount: 0,
-      total: product.price,
+      total: product.price + 100,
       shippingAddress: {
         name: name.trim(),
         street: street.trim(),
@@ -97,7 +97,9 @@ export default function WhatsAppCTA({ product }) {
 
 📦 *Order Number:* ${data.order.orderNumber}
 📦 *Watch:* ${product.name} (SKU: ${product.sku})
-💰 *Price:* ₹${product.price.toLocaleString('en-IN')}
+💰 *Subtotal:* ₹${product.price.toLocaleString('en-IN')}
+🚚 *Delivery:* ₹100
+💵 *Total Value:* ₹${(product.price + 100).toLocaleString('en-IN')}
 
 🚚 *Shipping Location:*
 👤 *Name:* ${name.trim()}

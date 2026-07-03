@@ -128,7 +128,7 @@ export default function CartPage() {
                   </div>
                   <div className="flex justify-between">
                     <span>Delivery</span>
-                    <span className="text-emerald-400 font-semibold uppercase text-xs">Complimentary</span>
+                    <span className="text-white font-medium">₹100</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Insurance</span>
@@ -137,7 +137,7 @@ export default function CartPage() {
 
                   <div className="border-t border-white/5 pt-4 flex justify-between font-display text-white text-lg font-bold">
                     <span>Total</span>
-                    <span className="text-[#C9A84C]">₹{subtotal.toLocaleString('en-IN')}</span>
+                    <span className="text-[#C9A84C]">₹{(subtotal + 100).toLocaleString('en-IN')}</span>
                   </div>
                 </div>
 
