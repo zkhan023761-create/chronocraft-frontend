@@ -877,8 +877,11 @@ export default function AdminDashboardPage() {
                               <span className="font-display font-bold text-[#C9A84C] text-sm tracking-wider">{o.orderNumber}</span>
                               {/* Customer name */}
                               {o.userId && (
-                                <span className="text-white/70 text-xs font-body font-semibold">
-                                  👤 {o.userId.name || o.userId.email || 'Customer'}
+                                <span className="text-white/70 text-xs font-body font-semibold flex items-center gap-1.5">
+                                  <svg className="w-3.5 h-3.5 text-white/40" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                  </svg>
+                                  {o.userId.name || o.userId.email || 'Customer'}
                                 </span>
                               )}
                               <span className="text-white/30 text-xs font-body">
@@ -964,7 +967,14 @@ export default function AdminDashboardPage() {
                                     <span className="font-semibold text-white">{o.shippingAddress.name}</span><br />
                                     {o.shippingAddress.street && <>{o.shippingAddress.street}<br /></>}
                                     {o.shippingAddress.city}{o.shippingAddress.state ? `, ${o.shippingAddress.state}` : ''} {o.shippingAddress.pincode}<br />
-                                    {o.shippingAddress.phone && <span className="text-white/50">📞 {o.shippingAddress.phone}</span>}
+                                    {o.shippingAddress.phone && (
+                                      <span className="text-white/50 flex items-center gap-1.5 mt-1">
+                                        <svg className="w-3.5 h-3.5 text-white/40" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                        </svg>
+                                        {o.shippingAddress.phone}
+                                      </span>
+                                    )}
                                   </p>
                                 </div>
                               )}
