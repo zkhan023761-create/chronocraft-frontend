@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  color-scheme: dark;
   /* Colors */
   --color-gold: #C9A84C;
   --color-gold-light: #F5E6C3;
@@ -43,4 +44,14 @@ body {
 
 .mobile-nav-panel {
   background-color: #0a0a0a !important;
+}
+
+/* Hide number input spinners globally */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
 }

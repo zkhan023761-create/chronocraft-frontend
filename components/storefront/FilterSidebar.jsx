@@ -89,7 +89,7 @@ export default function FilterSidebar({ filters, onChange }) {
                   type="checkbox"
                   checked={genders.includes(gender)}
                   onChange={() => toggleGender(gender)}
-                  className="w-4 h-4 border border-white/20 bg-[#161616] accent-[#C9A84C] rounded-sm focus:ring-0 focus:ring-offset-0 checked:bg-[#C9A84C] checked:border-[#C9A84C] cursor-pointer"
+                  className="w-4 h-4 appearance-none border border-white/20 bg-[#161616] rounded-sm checked:bg-[#C9A84C] checked:border-[#C9A84C] cursor-pointer flex items-center justify-center after:content-[''] checked:after:block after:hidden after:w-1.5 after:h-2.5 after:border-r-2 after:border-b-2 after:border-black after:rotate-45 after:-translate-y-[1px] focus:outline-none transition-colors duration-200"
                 />
                 <span className="text-white/60 group-hover:text-[#C9A84C] font-body text-sm transition-colors duration-200">
                   {gender}
@@ -111,7 +111,7 @@ export default function FilterSidebar({ filters, onChange }) {
                   type="checkbox"
                   checked={brands.includes(brand)}
                   onChange={() => toggleBrand(brand)}
-                  className="w-4 h-4 border border-white/20 bg-[#161616] accent-[#C9A84C] rounded-sm focus:ring-0 focus:ring-offset-0 checked:bg-[#C9A84C] checked:border-[#C9A84C] cursor-pointer"
+                  className="w-4 h-4 appearance-none border border-white/20 bg-[#161616] rounded-sm checked:bg-[#C9A84C] checked:border-[#C9A84C] cursor-pointer flex items-center justify-center after:content-[''] checked:after:block after:hidden after:w-1.5 after:h-2.5 after:border-r-2 after:border-b-2 after:border-black after:rotate-45 after:-translate-y-[1px] focus:outline-none transition-colors duration-200"
                 />
                 <span className="text-white/60 group-hover:text-[#C9A84C] font-body text-sm transition-colors duration-200">
                   {brand}
@@ -129,17 +129,27 @@ export default function FilterSidebar({ filters, onChange }) {
           <div className="flex items-center gap-2">
             <input
               type="number"
+              min="0"
               placeholder="Min"
               value={minPrice}
-              onChange={(e) => onChange({ ...filters, minPrice: e.target.value })}
+              onChange={(e) => {
+                const val = e.target.value;
+                if (val !== '' && parseFloat(val) < 0) return;
+                onChange({ ...filters, minPrice: val });
+              }}
               className="w-full bg-[#161616] border border-white/[0.08] text-white font-body text-xs px-3.5 py-2.5 rounded-sm focus:border-[#C9A84C] focus:outline-none placeholder:text-white/25 transition-all duration-300"
             />
             <span className="text-white/20 font-body text-xs">—</span>
             <input
               type="number"
+              min="0"
               placeholder="Max"
               value={maxPrice}
-              onChange={(e) => onChange({ ...filters, maxPrice: e.target.value })}
+              onChange={(e) => {
+                const val = e.target.value;
+                if (val !== '' && parseFloat(val) < 0) return;
+                onChange({ ...filters, maxPrice: val });
+              }}
               className="w-full bg-[#161616] border border-white/[0.08] text-white font-body text-xs px-3.5 py-2.5 rounded-sm focus:border-[#C9A84C] focus:outline-none placeholder:text-white/25 transition-all duration-300"
             />
           </div>

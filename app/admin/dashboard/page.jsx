@@ -1175,8 +1175,13 @@ export default function AdminDashboardPage() {
                   <input
                     type="number"
                     required
+                    min="0"
                     value={productForm.price}
-                    onChange={(e) => setProductForm({ ...productForm, price: e.target.value })}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (val !== '' && parseFloat(val) < 0) return;
+                      setProductForm({ ...productForm, price: val });
+                    }}
                     placeholder="e.g. 850000"
                     className="w-full bg-[#1A1A1A] border border-white/10 px-3 py-2 text-white placeholder:text-white/20 focus:outline-none focus:border-[#C9A84C]"
                   />
@@ -1187,7 +1192,7 @@ export default function AdminDashboardPage() {
                       type="checkbox"
                       checked={productForm.isTrending || false}
                       onChange={(e) => setProductForm({ ...productForm, isTrending: e.target.checked })}
-                      className="accent-[#C9A84C] w-4 h-4"
+                      className="w-4 h-4 appearance-none border border-white/20 bg-[#161616] rounded-sm checked:bg-[#C9A84C] checked:border-[#C9A84C] cursor-pointer flex items-center justify-center after:content-[''] checked:after:block after:hidden after:w-1.5 after:h-2.5 after:border-r-2 after:border-b-2 after:border-black after:rotate-45 after:-translate-y-[1px] focus:outline-none transition-colors duration-200"
                     />
                     Trending Now
                   </label>
@@ -1196,7 +1201,7 @@ export default function AdminDashboardPage() {
                       type="checkbox"
                       checked={productForm.isNew || false}
                       onChange={(e) => setProductForm({ ...productForm, isNew: e.target.checked })}
-                      className="accent-[#C9A84C] w-4 h-4"
+                      className="w-4 h-4 appearance-none border border-white/20 bg-[#161616] rounded-sm checked:bg-[#C9A84C] checked:border-[#C9A84C] cursor-pointer flex items-center justify-center after:content-[''] checked:after:block after:hidden after:w-1.5 after:h-2.5 after:border-r-2 after:border-b-2 after:border-black after:rotate-45 after:-translate-y-[1px] focus:outline-none transition-colors duration-200"
                     />
                     New Arrival
                   </label>
@@ -1207,8 +1212,13 @@ export default function AdminDashboardPage() {
                   <input
                     type="number"
                     required
+                    min="0"
                     value={productForm.stock}
-                    onChange={(e) => setProductForm({ ...productForm, stock: e.target.value })}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (val !== '' && parseInt(val) < 0) return;
+                      setProductForm({ ...productForm, stock: val });
+                    }}
                     placeholder="e.g. 1"
                     className="w-full bg-[#1A1A1A] border border-white/10 px-3 py-2 text-white placeholder:text-white/20 focus:outline-none focus:border-[#C9A84C]"
                   />
@@ -1258,8 +1268,13 @@ export default function AdminDashboardPage() {
                   <label className="block text-white/40 text-xs uppercase tracking-wider mb-2">Case Size (mm)</label>
                   <input
                     type="number"
+                    min="0"
                     value={productForm.caseSize}
-                    onChange={(e) => setProductForm({ ...productForm, caseSize: e.target.value })}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (val !== '' && parseFloat(val) < 0) return;
+                      setProductForm({ ...productForm, caseSize: val });
+                    }}
                     placeholder="e.g. 41"
                     className="w-full bg-[#1A1A1A] border border-white/10 px-3 py-2 text-white placeholder:text-white/20 focus:outline-none focus:border-[#C9A84C]"
                   />
@@ -1560,7 +1575,12 @@ export default function AdminDashboardPage() {
                   <label className="block text-white/40 text-xs uppercase tracking-wider mb-2">Display Order</label>
                   <input
                     type="number" value={reviewForm.displayOrder}
-                    onChange={(e) => setReviewForm({ ...reviewForm, displayOrder: Number(e.target.value) })}
+                    min="0"
+                    onChange={(e) => {
+                      const val = Number(e.target.value);
+                      if (val < 0) return;
+                      setReviewForm({ ...reviewForm, displayOrder: val });
+                    }}
                     className="w-full bg-[#1A1A1A] border border-white/10 px-3 py-2 text-white focus:outline-none focus:border-[#C9A84C]"
                     placeholder="0"
                   />
@@ -1591,9 +1611,9 @@ export default function AdminDashboardPage() {
                 <input
                   type="checkbox" id="rev-published" checked={reviewForm.isPublished}
                   onChange={(e) => setReviewForm({ ...reviewForm, isPublished: e.target.checked })}
-                  className="w-4 h-4 accent-[#C9A84C]"
+                  className="w-4 h-4 appearance-none border border-white/20 bg-[#161616] rounded-sm checked:bg-[#C9A84C] checked:border-[#C9A84C] cursor-pointer flex items-center justify-center after:content-[''] checked:after:block after:hidden after:w-1.5 after:h-2.5 after:border-r-2 after:border-b-2 after:border-black after:rotate-45 after:-translate-y-[1px] focus:outline-none transition-colors duration-200"
                 />
-                <label htmlFor="rev-published" className="text-white/60 text-xs uppercase tracking-wider cursor-pointer">
+                <label htmlFor="rev-published" className="text-white/60 text-xs uppercase tracking-wider cursor-pointer select-none">
                   Publish on storefront
                 </label>
               </div>
