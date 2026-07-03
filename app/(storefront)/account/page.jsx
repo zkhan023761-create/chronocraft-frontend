@@ -155,13 +155,23 @@ function AccountPageInner() {
     const token  = session.user.accessToken;
 
     setOrdersLoading(true);
-    fetch(`${apiUrl}/customers/me/orders`, { headers: { Authorization: `Bearer ${token}` } })
+    fetch(`${apiUrl}/customers/me/orders`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'X-Tenant-ID': process.env.NEXT_PUBLIC_TENANT_ID || '',
+      },
+    })
       .then((r) => r.json())
       .then((data) => setOrders(Array.isArray(data) ? data : []))
       .catch(() => setOrders([]))
       .finally(() => setOrdersLoading(false));
 
-    fetch(`${apiUrl}/auth/customer/profile`, { headers: { Authorization: `Bearer ${token}` } })
+    fetch(`${apiUrl}/auth/customer/profile`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'X-Tenant-ID': process.env.NEXT_PUBLIC_TENANT_ID || '',
+      },
+    })
       .then((r) => r.json())
       .then((data) => {
         if (data.success && data.user) {
@@ -193,7 +203,11 @@ function AccountPageInner() {
     try {
       const res = await fetch(`${apiUrl}/auth/customer/profile`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+          'X-Tenant-ID': process.env.NEXT_PUBLIC_TENANT_ID || '',
+        },
         body: JSON.stringify({ name: profileName, email: profileEmail, phone: profilePhone }),
       });
       const data = await res.json();
@@ -220,7 +234,11 @@ function AccountPageInner() {
     try {
       const res = await fetch(`${apiUrl}/auth/customer/profile`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+          'X-Tenant-ID': process.env.NEXT_PUBLIC_TENANT_ID || '',
+        },
         body: JSON.stringify({ currentPassword, newPassword }),
       });
       const data = await res.json();
