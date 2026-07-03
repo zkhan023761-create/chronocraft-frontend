@@ -70,7 +70,10 @@ export default function OrderTrackingPage() {
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
     fetch(`${apiUrl}/orders/${id}`, {
-      headers: { Authorization: `Bearer ${session?.user?.accessToken}` },
+      headers: {
+        Authorization: `Bearer ${session?.user?.accessToken}`,
+        'X-Tenant-ID': process.env.NEXT_PUBLIC_TENANT_ID || '',
+      },
     })
       .then((r) => {
         if (!r.ok) throw new Error('Order not found');

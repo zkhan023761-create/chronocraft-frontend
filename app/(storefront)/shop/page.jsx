@@ -82,7 +82,9 @@ function ShopContent() {
     });
 
     try {
-      const res = await fetch(`${apiUrl}/products?${params}`);
+      const res = await fetch(`${apiUrl}/products?${params}`, {
+        headers: { 'X-Tenant-ID': process.env.NEXT_PUBLIC_TENANT_ID || '' },
+      });
       const data = await res.json();
       const fetched = Array.isArray(data) ? data : (data?.products || []);
       if (append) {

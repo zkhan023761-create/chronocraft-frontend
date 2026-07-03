@@ -76,7 +76,9 @@ function BrandContent() {
     const queryParams = new URLSearchParams({ page: pageNum, limit: 12, brand: brandName, sort: sortVal });
 
     try {
-      const res = await fetch(`${apiUrl}/products?${queryParams}`);
+      const res = await fetch(`${apiUrl}/products?${queryParams}`, {
+        headers: { 'X-Tenant-ID': process.env.NEXT_PUBLIC_TENANT_ID || '' },
+      });
       const data = await res.json();
       const fetched = Array.isArray(data) ? data : (data?.products || []);
       if (append) {

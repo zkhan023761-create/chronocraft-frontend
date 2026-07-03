@@ -99,13 +99,17 @@ export default function ProductDetailPage() {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
     // Fetch product
-    fetch(`${apiUrl}/products/${slug}`)
+    fetch(`${apiUrl}/products/${slug}`, {
+      headers: { 'X-Tenant-ID': process.env.NEXT_PUBLIC_TENANT_ID || '' },
+    })
       .then((r) => r.json())
       .then((data) => {
         if (data && data._id) {
           setProduct(data);
           // Fetch related
-          return fetch(`${apiUrl}/brands/${data.brand}/products?limit=4`);
+          return fetch(`${apiUrl}/brands/${data.brand}/products?limit=4`, {
+            headers: { 'X-Tenant-ID': process.env.NEXT_PUBLIC_TENANT_ID || '' },
+          });
         }
         throw new Error('Not found');
       })
