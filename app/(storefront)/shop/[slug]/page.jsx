@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import Navbar from '@/components/storefront/Navbar';
 import Footer from '@/components/storefront/Footer';
@@ -22,6 +22,7 @@ const CONDITION_COLORS = {
 
 export default function ProductDetailPage() {
   const { slug } = useParams();
+  const router = useRouter();
   const { data: session } = useSession();
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -270,7 +271,13 @@ export default function ProductDetailPage() {
                 {/* Add to Cart + Wishlist row */}
                 <div className="flex gap-3">
                   <button
-                    onClick={() => addItem(product)}
+                    onClick={() => {
+                      if (!session) {
+                        router.push('/login?redirect=' + encodeURIComponent(window.location.pathname.substring(1)));
+                        return;
+                      }
+                      addItem(product);
+                    }}
                     disabled={isOutOfStock}
                     className={`flex-1 py-4 font-body font-semibold uppercase tracking-wider text-sm transition-colors ${
                       isOutOfStock
@@ -283,7 +290,13 @@ export default function ProductDetailPage() {
 
                   {/* Wishlist heart button */}
                   <button
-                    onClick={() => toggleItem(product)}
+                    onClick={() => {
+                      if (!session) {
+                        router.push('/login?redirect=' + encodeURIComponent(window.location.pathname.substring(1)));
+                        return;
+                      }
+                      toggleItem(product);
+                    }}
                     aria-label={isWishlisted ? 'Remove from wishlist' : 'Save to wishlist'}
                     className={`
                       shrink-0 w-14 flex items-center justify-center border transition-all duration-300
@@ -385,7 +398,13 @@ export default function ProductDetailPage() {
                     To write a review for this timepiece, you must first add it to your shopping cart.
                   </p>
                   <button
-                    onClick={() => addItem(product)}
+                    onClick={() => {
+                      if (!session) {
+                        router.push('/login?redirect=' + encodeURIComponent(window.location.pathname.substring(1)));
+                        return;
+                      }
+                      addItem(product);
+                    }}
                     className="shrink-0 font-body font-semibold text-xs text-[#C9A84C] uppercase tracking-wider border border-[#C9A84C]/40 px-4 py-2.5 hover:bg-[#C9A84C]/10 transition-colors"
                   >
                     Add to Cart

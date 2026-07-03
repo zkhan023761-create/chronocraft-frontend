@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useCartStore from '@/lib/store/cartStore';
 import useWishlistStore from '@/lib/store/wishlistStore';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const BRAND_FALLBACK_IMAGES = {
   'rolex': '/images/rolex-submariner.png',
@@ -15,6 +17,8 @@ const BRAND_FALLBACK_IMAGES = {
 };
 
 export default function ProductCard({ product }) {
+  const { data: session } = useSession();
+  const router = useRouter();
   const addItem       = useCartStore((s) => s.addItem);
   const toggleItem    = useWishlistStore((s) => s.toggleItem);
   const isWishlisted  = useWishlistStore((s) => s.isWishlisted(product._id));
@@ -22,12 +26,20 @@ export default function ProductCard({ product }) {
   const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (!session) {
+      router.push('/login?redirect=' + encodeURIComponent(window.location.pathname.substring(1)));
+      return;
+    }
     addItem(product);
   };
 
   const handleToggleWishlist = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (!session) {
+      router.push('/login?redirect=' + encodeURIComponent(window.location.pathname.substring(1)));
+      return;
+    }
     toggleItem(product);
   };
 
