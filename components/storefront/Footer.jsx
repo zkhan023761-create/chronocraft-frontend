@@ -109,7 +109,18 @@ export default function Footer() {
           <p className="text-white/30 font-body text-sm">
             © {year} Chrono Craft. All rights reserved.
           </p>
-          <p className="text-white/20 font-body text-xs">
+          <p className="text-white/30 font-body text-sm text-center">
+            Made by{' '}
+            <a 
+              href="https://profile.nexcoreinstitute.org/zaid.html" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-[#C9A84C] hover:underline transition-all"
+            >
+              Zaid
+            </a>
+          </p>
+          <p className="text-white/20 font-body text-xs text-right">
             All watches authenticated and verified before listing.
           </p>
         </div>
