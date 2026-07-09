@@ -35,7 +35,7 @@ export default function ShippingPolicyPage() {
           </p>
           <h2 className="text-2xl font-bold text-white mt-8 mb-4">International Shipping</h2>
           <p className="text-white/70 leading-relaxed">
-            Please note that international shipments may be subject to import taxes, customs duties, and fees levied by the destination country. These charges are the buyer's responsibility.
+            Please note that international shipments may be subject to import taxes, customs duties, and fees levied by the destination country. These charges are the buyer&apos;s responsibility.
           </p>
         </section>
       </main>
